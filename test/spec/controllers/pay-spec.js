@@ -25,12 +25,6 @@ describe('Controller: PayCtrl', function () {
     cartList = [{'category': 'fruit', 'name': 'apple', 'unit': '斤', 'price': '5.50'}];
   });
 
-//  it('should use Date function', function() {
-//    spyOn(Date(), 'toLocaleString').and.returnValue('2014.09.16');
-//    createController();
-//    $scope.date = new Date().toLocaleDateString();
-//    expect($scope.date).toHaveBeenCalled();
-//  });
   it('should get cartList', function() {
     spyOn(ItemsService, 'get');
     createController();
