@@ -33,7 +33,7 @@ describe('Controller: ItemsService', function () {
   });
 
   it('should load items', function() {
-    spyOn(localStorageService, 'get').andReturn(items);
+    spyOn(localStorageService, 'get').and.returnValue(items);
     spyOn(localStorageService, 'set');
     var itemsList = ItemsService.loadItems();
 
@@ -43,7 +43,7 @@ describe('Controller: ItemsService', function () {
   });
 
   it('should increase count', function() {
-    spyOn(ItemsService, 'get').andReturn(1);
+    spyOn(ItemsService, 'get').and.returnValue(1);
     spyOn(ItemsService, 'add');
     var count = ItemsService.count();
 
@@ -54,7 +54,7 @@ describe('Controller: ItemsService', function () {
 
   it('should reduce count', function() {
     spyOn(ItemsService, 'add');
-    spyOn(ItemsService, 'get').andReturn(3);
+    spyOn(ItemsService, 'get').and.returnValue(3);
     var count = ItemsService.reduceCount();
 
     expect(count).toBe(2);

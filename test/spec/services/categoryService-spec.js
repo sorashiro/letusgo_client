@@ -25,7 +25,7 @@ describe('Controller: CategoryService', function () {
   });
 
   it('should load category', function() {
-    spyOn(ItemsService, 'get').andReturn(itemsList);
+    spyOn(ItemsService, 'get').and.returnValue(itemsList);
     spyOn(ItemsService, 'add');
     var categories = CategoryService.loadCategory();
     expect(ItemsService.get).toHaveBeenCalledWith('itemsList');
@@ -34,8 +34,8 @@ describe('Controller: CategoryService', function () {
 
   it('should add new category', function() {
     var category = 'book';
-    spyOn(ItemsService, 'get').andReturn(itemsList);
-    spyOn(CategoryService, 'loadCategory').andReturn(categories);
+    spyOn(ItemsService, 'get').and.returnValue(itemsList);
+    spyOn(CategoryService, 'loadCategory').and.returnValue(categories);
     spyOn(ItemsService, 'add');
 
     CategoryService.addCategory(category);
@@ -48,7 +48,7 @@ describe('Controller: CategoryService', function () {
 
   it('can not remove old category', function() {
     var category = 'food';
-    spyOn(ItemsService, 'get').andReturn(itemsList);
+    spyOn(ItemsService, 'get').and.returnValue(itemsList);
     spyOn(ItemsService, 'add');
 
     CategoryService.removes(category);
@@ -60,7 +60,7 @@ describe('Controller: CategoryService', function () {
 
   it('can remove old category', function() {
     var category = 'book';
-    spyOn(ItemsService, 'get').andReturn(itemsList);
+    spyOn(ItemsService, 'get').and.returnValue(itemsList);
     spyOn(ItemsService, 'add');
 
     CategoryService.removes(category);
@@ -86,7 +86,7 @@ describe('Controller: CategoryService', function () {
   });
 
   it('should get category name', function() {
-    spyOn(ItemsService, 'get').andReturn('book');
+    spyOn(ItemsService, 'get').and.returnValue('book');
     var category = CategoryService.getName();
 
     expect(category).toEqual('book');
@@ -95,7 +95,7 @@ describe('Controller: CategoryService', function () {
 
   it('should modify category', function() {
     spyOn(ItemsService, 'add');
-    spyOn(ItemsService, 'get').andReturn(itemsList);
+    spyOn(ItemsService, 'get').and.returnValue(itemsList);
     var category = 'book';
     var newName = 'toy';
     CategoryService.modifyCategory(category, newName);

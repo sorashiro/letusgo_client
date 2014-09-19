@@ -34,7 +34,7 @@ describe('Controller: CartCtrl', function () {
   });
 
   it('should show correct route', function() {
-    spyOn(CartService, 'category').andReturn(cartItem);
+    spyOn(CartService, 'category').and.returnValue(cartItem);
     createController();
 
     var categorys = [];
@@ -46,7 +46,7 @@ describe('Controller: CartCtrl', function () {
 
   });
   it('should show correct route', function() {
-    spyOn(CartService, 'category').andReturn([]);
+    spyOn(CartService, 'category').and.returnValue([]);
     createController();
 
     expect($scope.pay).toBe('返回商城');

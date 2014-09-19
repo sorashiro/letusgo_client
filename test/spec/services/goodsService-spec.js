@@ -38,7 +38,7 @@ describe('Controller: GoodsService', function () {
     var name = 'cake';
     var unit = '个';
     var price = '10.00';
-    spyOn(ItemsService, 'get').andReturn(itemsList);
+    spyOn(ItemsService, 'get').and.returnValue(itemsList);
     spyOn(ItemsService, 'add');
 
     GoodsService.addGoods(category, name, unit, price);
@@ -57,7 +57,7 @@ describe('Controller: GoodsService', function () {
   });
 
   it('should remove goods', function() {
-    spyOn(ItemsService, 'get').andReturn(itemsList);
+    spyOn(ItemsService, 'get').and.returnValue(itemsList);
     spyOn(ItemsService, 'add');
 
     GoodsService.remove(goodsInformation);
@@ -74,7 +74,7 @@ describe('Controller: GoodsService', function () {
   });
 
   it('should change goods', function() {
-    spyOn(ItemsService, 'loadItems').andReturn(items);
+    spyOn(ItemsService, 'loadItems').and.returnValue(items);
     spyOn(ItemsService, 'add');
 
     GoodsService.change(goodsInformation);
@@ -84,7 +84,7 @@ describe('Controller: GoodsService', function () {
   });
 
   it('should get item',function() {
-    spyOn(ItemsService, 'get').andReturn(modifyItem);
+    spyOn(ItemsService, 'get').and.returnValue(modifyItem);
     var item = GoodsService.getItem();
 
     expect(ItemsService.get).toHaveBeenCalledWith('modifyItem');
@@ -93,8 +93,8 @@ describe('Controller: GoodsService', function () {
 
   it('should modify goods information', function() {
     spyOn(ItemsService, 'add');
-    spyOn(ItemsService, 'get').andReturn(itemsList);
-    spyOn(GoodsService, 'getItem').andReturn(modifyItem);
+    spyOn(ItemsService, 'get').and.returnValue(itemsList);
+    spyOn(GoodsService, 'getItem').and.returnValue(modifyItem);
     var category = 'food';
     var name = 'cake';
     var unit = '个';

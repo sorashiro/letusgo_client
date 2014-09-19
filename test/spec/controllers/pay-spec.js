@@ -26,7 +26,7 @@ describe('Controller: PayCtrl', function () {
   });
 
 //  it('should use Date function', function() {
-//    spyOn(Date(), 'toLocaleString').andReturn('2014.09.16');
+//    spyOn(Date(), 'toLocaleString').and.returnValue('2014.09.16');
 //    createController();
 //    $scope.date = new Date().toLocaleDateString();
 //    expect($scope.date).toHaveBeenCalled();

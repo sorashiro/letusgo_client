@@ -18,7 +18,7 @@ describe('Controller: CartService', function () {
   });
 
   it('should return cartList', function() {
-    spyOn(localStorageService, 'get').andReturn(cartList);
+    spyOn(localStorageService, 'get').and.returnValue(cartList);
     var cartLists = CartService.cartList();
 
     expect(cartLists).toBe(cartList);
@@ -35,7 +35,7 @@ describe('Controller: CartService', function () {
   });
 
   it('should reduce number', function() {
-    spyOn(localStorageService, 'get').andReturn(cartList);
+    spyOn(localStorageService, 'get').and.returnValue(cartList);
     spyOn(localStorageService, 'set');
     CartService.reduceNumber(cartItem);
 
@@ -44,7 +44,7 @@ describe('Controller: CartService', function () {
   });
 
   it('should increase number', function() {
-    spyOn(localStorageService, 'get').andReturn(cartList);
+    spyOn(localStorageService, 'get').and.returnValue(cartList);
     spyOn(localStorageService, 'set');
     CartService.plusNumber(cartItem);
 
@@ -53,7 +53,7 @@ describe('Controller: CartService', function () {
   });
 
   it('should get total', function() {
-    spyOn(localStorageService, 'get').andReturn(cartList);
+    spyOn(localStorageService, 'get').and.returnValue(cartList);
     var total = CartService.getTotal();
 
     expect(localStorageService.get).toHaveBeenCalled();
