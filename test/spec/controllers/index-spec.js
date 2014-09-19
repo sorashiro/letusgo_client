@@ -4,7 +4,7 @@ describe('Controller: IndexCtrl', function () {
   var ItemsService, $scope, createController, $rootScope;
 
   beforeEach(function () {
-    module('letusgoAngularJsApp');
+    module('letusgoApp');
 
     inject(function ($injector) {
 

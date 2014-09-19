@@ -4,7 +4,7 @@ describe('Controller: ItemsService', function () {
   var $scope, localStorageService, ItemsService, items;
 
   beforeEach(function () {
-    module('letusgoAngularJsApp');
+    module('letusgoApp');
 
     inject(function ($injector) {
 

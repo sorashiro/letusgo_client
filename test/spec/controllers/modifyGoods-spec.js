@@ -4,7 +4,7 @@ describe('Controller: ModifyGoodsCtrl', function () {
   var $scope, createController, CategoryService, GoodsService, ItemsService, modifyItem;
 
   beforeEach(function () {
-    module('letusgoAngularJsApp');
+    module('letusgoApp');
 
     inject(function ($injector) {
 
