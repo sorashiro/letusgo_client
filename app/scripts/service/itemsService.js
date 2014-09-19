@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('letusgoApp').service('ItemsService', function (localStorageService) {
+angular.module('letusgoApp').service('ItemsService', function ($http, localStorageService) {
 
   this.items = function () {
 
@@ -26,16 +26,22 @@ angular.module('letusgoApp').service('ItemsService', function (localStorageServi
     return itemsList;
   };
 
-  this.loadItems = function () {
-    var item = localStorageService.get('itemsList') || [];
-    for (var i = 0; i < item.length; i++) {
-      if (!item[i].name) {
-        item.splice(i, 1);
-        i--;
-      }
-    }
-    localStorageService.set('newList', item);
-    return item;
+
+//  this.loadItems = function () {
+//    var item = localStorageService.get('itemsList') || [];
+//    for (var i = 0; i < item.length; i++) {
+//      if (!item[i].name) {
+//        item.splice(i, 1);
+//        i--;
+//      }
+//    }
+//    localStorageService.set('newList', item);
+//    return item;
+//  };
+  this.loadItems = function (callback) {
+    $http.get('/api/items').success(function (data) {
+      callback(data);
+    });
   };
 
   this.count = function () {
