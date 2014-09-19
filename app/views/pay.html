@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <h4>确认订单</h4>
+    </div>
+    <div class="panel-body text-center" id="payList">
+        <p>购物时间：{{date}}</p>
+        <p>-------------------------------------------------------</p>
+        <p ng-repeat="cartItem in cartItems">
+            名称：{{cartItem.item.name}}, 数量：{{cartItem.num}}, 单价：{{cartItem.item.price}}, 小计：{{(cartItem.num * cartItem.item.price).toFixed(2)}}
+        </p>
+        <p>总计：{{(total).toFixed(2)}}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-2 text-right">
+        <a class="btn btn-primary btn-lg" role="button" id="clearing" href="#" ng-click="account()">结算！</a>
+    </div>
+
+    <div class="col-md-1"></div>
+    <div class="col-md-2 text-right">
+        <a class="btn btn-primary btn-lg" role="button" href="#/cart">修改！</a>
+    </div>
+    <div class="col-md-4"></div>
+</div>

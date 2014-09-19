@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-heading text-center">
+    <div class="row panel-title">
+      <h4>增加商品分类</h4>
+    </div>
+  </div>
+  <div class="panel-body text-center" id="cart-item">
+    <div class="cow">
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <input type="text" name="className" class="form-control" placeholder="请输入分类名称" ng-model="input">
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-1"><button type="button" class="btn btn-primary btn-sm" id="{{category}}" ng-click="addCategory()" value="0">添加</button>
+      </div>
+      <div class="col-md-1"><a class="btn btn-danger btn-sm" role="button" href="#/categoryManager" id="pay">返回</a></div>
+    </div>
+  </div>
+</div>

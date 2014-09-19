@@ -1,0 +1,38 @@
+<div class="panel panel-default" id="cart">
+    <div class="panel-heading text-center">
+        <h4>购物车</h4>
+    </div>
+    <div class="panel-body text-center" id="cart-item">
+        <div class="panel panel-default" ng-repeat="cartItem in cartItems">
+            <div class="panel-heading text-center">
+                <h4>{{cartItem.category}}</h4>
+            </div>
+            <ul class="list-group text-center">
+                <li class="list-group-item" id="livingGoods">
+                    <div class="row panel-title">
+                        <div class="col-md-3">名称</div>
+                        <div class="col-md-3">单价</div>
+                        <div class="col-md-3">数量</div>
+                        <div class="col-md-3">小计</div>
+                    </div>
+                </li>
+                <li class="list-group-item" ng-repeat="a in cartItem.item">
+                    <div class="row panel-title">
+                        <div class="col-md-3">{{a.item.name}}</div>
+                        <div class="col-md-3">{{a.item.price}}</div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-primary btn-sm" name="{{a.item.name}}" ng-click="reduce(a.item)">-</button>
+                            <button type="button" class="btn btn-default btn-sm" disabled="false" name="number">{{a.num}}</button>
+                            <button type="button" class="btn btn-primary btn-sm" name="{{a.item.name}}" ng-click="plus(a.item)">+</button>
+                        </div>
+                        <div class="col-md-3">{{(a.item.price * a.num).toFixed(2)}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    <div class="text-center">
+        <a class="btn btn-primary btn-lg" role="button" href={{url}} id="pay">{{pay}}</a>
+    </div>
+  </div>
+</div>
