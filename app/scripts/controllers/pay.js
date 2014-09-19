@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('letusgoAngularJsApp').controller('PayCtrl', function ($scope, ItemsService, CartItemService) {
+angular.module('letusgoApp').controller('PayCtrl', function ($scope, ItemsService, CartItemService) {
 
   $scope.date = new Date().toLocaleString();
   $scope.cartItems = ItemsService.get('cartList');

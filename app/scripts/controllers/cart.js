@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('letusgoAngularJsApp').controller('CartCtrl', function ($scope, CartItemService, ItemsService) {
+angular.module('letusgoApp').controller('CartCtrl', function ($scope, CartItemService, ItemsService) {
 
   var categorys = [];
   var cartLists = [];

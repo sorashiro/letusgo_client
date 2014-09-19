@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('letusgoAngularJsApp').service('GoodsInformationService', function (localStorageService, ItemsService) {
+angular.module('letusgoApp').service('GoodsInformationService', function (localStorageService, ItemsService) {
 
   this.addGoods = function (category, name, unit, price) {
     var items = ItemsService.get('itemsList');

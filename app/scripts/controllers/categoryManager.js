@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('letusgoAngularJsApp').controller('CategoryCtrl', function ($scope, CategoryService) {
+angular.module('letusgoApp').controller('CategoryCtrl', function ($scope, CategoryService) {
 
   $scope.$emit('parentManage');
   $scope.categorys = CategoryService.loadCategory();

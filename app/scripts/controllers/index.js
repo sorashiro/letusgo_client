@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('letusgoAngularJsApp')
+angular.module('letusgoApp')
   .controller('IndexCtrl', function ($scope, ItemsService) {
 
     ItemsService.items();
