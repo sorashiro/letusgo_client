@@ -3,7 +3,10 @@
 angular.module('letusgoApp').controller('CategoryCtrl', function ($scope, CategoryService) {
 
   $scope.$emit('parentManage');
-  $scope.categorys = CategoryService.loadCategory();
+
+  CategoryService.loadCategory(function(categories){
+    $scope.categorys = categories;
+  });
 
   $scope.addCategory = function () {
     var category = $scope.input;
