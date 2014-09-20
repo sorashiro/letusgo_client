@@ -26,20 +26,14 @@ angular.module('letusgoApp').service('ItemsService', function ($http, localStora
     return itemsList;
   };
 
-
-//  this.loadItems = function () {
-//    var item = localStorageService.get('itemsList') || [];
-//    for (var i = 0; i < item.length; i++) {
-//      if (!item[i].name) {
-//        item.splice(i, 1);
-//        i--;
-//      }
-//    }
-//    localStorageService.set('newList', item);
-//    return item;
-//  };
   this.loadItems = function (callback) {
     $http.get('/api/items').success(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        if (!data[i].name) {
+          data.splice(i, 1);
+          i--;
+        }
+      }
       callback(data);
     });
   };
