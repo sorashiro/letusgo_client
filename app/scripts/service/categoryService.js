@@ -1,18 +1,18 @@
 'use strict';
 
-angular.module('letusgoApp').service('CategoryService', function (localStorageService, ItemsService) {
+angular.module('letusgoApp').service('CategoryService', function ($http, localStorageService, ItemsService) {
 
-  this.loadCategory = function () {
-    var categorys = [];
-    var items = ItemsService.get('itemsList') || [];
+  this.loadCategory = function (callback) {
+    $http.get('/api/items').success(function (data) {
+      var categories = [];
 
-    for (var i = 0; i < items.length; i++) {
-      if (categorys.indexOf(items[i].category) === -1) {
-        categorys.push(items[i].category);
+      for (var i = 0; i < data.length; i++) {
+        if (categories.indexOf(data[i].category) === -1) {
+          categories.push(data[i].category);
+        }
       }
-    }
-    ItemsService.add('categorys', categorys);
-    return categorys;
+      callback(categories);
+    });
   };
 
   this.addCategory = function (category) {
