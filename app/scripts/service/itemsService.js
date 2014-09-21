@@ -2,38 +2,8 @@
 
 angular.module('letusgoApp').service('ItemsService', function ($http, localStorageService) {
 
-  this.items = function () {
-
-    var itemsList = [
-      {
-        'category': 'fruit', 'name': 'apple', 'unit': '斤', 'price': '5.50'
-      },
-      {
-        'category': 'fruit', 'name': 'leechee', 'unit': '斤', 'price': '15.00'
-      },
-      {
-        'category': 'food', 'name': 'sprite', 'unit': '瓶', 'price': '3.00'
-      },
-      {
-        'category': 'food', 'name': 'coca-cola', 'unit': '瓶', 'price': '3.00'
-      },
-      {
-        'category': 'livingGoods', 'name': 'battery', 'unit': '个', 'price': '2.00'
-      }
-    ];
-    localStorageService.set('itemsList', itemsList);
-    localStorageService.set('newList', 0);
-    return itemsList;
-  };
-
   this.loadItems = function (callback) {
     $http.get('/api/items').success(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        if (!data[i].name) {
-          data.splice(i, 1);
-          i--;
-        }
-      }
       callback(data);
     });
   };
