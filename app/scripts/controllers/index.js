@@ -3,8 +3,6 @@
 angular.module('letusgoApp')
   .controller('IndexCtrl', function ($scope, ItemsService) {
 
-    ItemsService.items();
-
     $scope.$emit('parentHome');
     $scope.$emit('parentCount');
 
