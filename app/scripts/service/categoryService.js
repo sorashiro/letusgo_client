@@ -2,16 +2,12 @@
 
 angular.module('letusgoApp').service('CategoryService', function ($http, localStorageService, ItemsService) {
 
-  this.loadCategory = function (callback) {
-    $http.get('/api/items').success(function (data) {
-      var categories = [];
+//    ItemsService.add('categorys', categorys);
 
-      for (var i = 0; i < data.length; i++) {
-        if (categories.indexOf(data[i].category) === -1) {
-          categories.push(data[i].category);
-        }
-      }
-      callback(categories);
+
+  this.loadCategory = function (callback) {
+    $http.get('/api/categories').success(function (data) {
+      callback(data);
     });
   };
 
