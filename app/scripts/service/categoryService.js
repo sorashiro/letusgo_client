@@ -5,21 +5,20 @@ angular.module('letusgoApp').service('CategoryService', function ($http, localSt
 //    ItemsService.add('categorys', categorys);
 
 
-  this.loadCategory = function (callback) {
+  this.loadCategories = function (callback) {
     $http.get('/api/categories').success(function (data) {
       callback(data);
     });
   };
 
-  this.addCategory = function (category) {
-    var items = ItemsService.get('itemsList');
-    var categorys = this.loadCategory();
-    var newItem = {'category': category};
-
-    items.push(newItem);
-    categorys.push(category);
-    ItemsService.add('itemsList', items);
-    ItemsService.add('categorys', categorys);
+  this.addCategory = function(category) {
+    this.loadCategories(function(data) {
+      var categories = data;
+      var ids = _.pluck(categories, 'id');
+      var maxId = _.max(ids);
+      categories.push({category: category, id: maxId+1});
+      $http.post('/api/categories', {categories: categories});
+    })
   };
 
   this.removes = function (category) {

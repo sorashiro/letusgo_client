@@ -4,7 +4,7 @@ angular.module('letusgoApp').controller('CategoryCtrl', function ($scope, Catego
 
   $scope.$emit('parentManage');
 
-  CategoryService.loadCategory(function(data){
+  CategoryService.loadCategories(function(data){
     $scope.categorys = data;
   });
 
