@@ -17,7 +17,7 @@
     </li>
     <li class="list-group-item" ng-repeat="category in categorys | filter:query">
       <div class="row panel-title">
-        <div class="col-md-3">{{category}}</div>
+        <div class="col-md-3">{{category.category}}</div>
         <div class="col-md-5"></div>
         <div class="col-md-2"><a href="#/modifyCategory"><button type="button" class="btn btn-primary btn-xs" name="{{category}}" ng-click="change(category)" value="0">修改</button></a></div>
         <div class="col-md-2"><button type="button" class="btn btn-danger btn-xs" name="{{category}}" ng-click="removes(category)" value="0">移除</button></div>
