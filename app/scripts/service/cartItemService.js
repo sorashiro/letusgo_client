@@ -74,7 +74,7 @@ angular.module('letusgoApp').service('CartItemService', function ($http, localSt
       _.forEach(cartItems, function(cartItem) {
         total += cartItem.num * cartItem.item.price;
       });
-      
+
       callback(total);
     })
   };

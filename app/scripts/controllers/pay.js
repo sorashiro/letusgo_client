@@ -3,7 +3,9 @@
 angular.module('letusgoApp').controller('PayCtrl', function ($scope, ItemsService, CartItemService) {
 
   $scope.date = new Date().toLocaleString();
-  $scope.cartItems = ItemsService.get('cartList');
+  CartItemService.loadCartItems(function (data) {
+    $scope.cartItems = data;
+  });
 
   CartItemService.getTotal(function(total) {
     $scope.total = total;
