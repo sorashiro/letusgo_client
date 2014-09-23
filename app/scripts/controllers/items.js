@@ -17,6 +17,6 @@ angular.module('letusgoApp').controller('ItemsCtrl', function ($scope, ItemsServ
     ItemsService.count();
     $scope.$emit('parentCount');
 
-    ItemsService.addToCart(cartList, names, item);
+    ItemsService.addToCart(item);
   };
 });
