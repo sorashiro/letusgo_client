@@ -8,6 +8,32 @@ angular.module('letusgoApp').service('CartItemService', function ($http, localSt
     });
   };
 
+  this.showCartList = function(callback) {
+    this.loadCartItems(function(data) {
+      var cartList = [];
+      var cart = {};
+      var cartItems = data || [];
+
+      var items = _.pluck(cartItems, 'item');
+      var categories = _.uniq(_.pluck(items, 'category'));
+
+      _.forEach(categories, function(category) {
+        var showItem = [];
+
+        _.forEach(cartItems, function(cartItem) {
+          if (category === cartItem.item.category) {
+            showItem.push(cartItem);
+          }
+        });
+
+        if (showItem.length !== 0) {
+          cart = {category: category, item: showItem};
+          cartList.push(cart);
+        }
+      });
+      callback(cartList);
+    })
+  };
 
   this.reduceNumber = function (cartItem) {
     var cartLists;
