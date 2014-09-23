@@ -4,20 +4,24 @@ angular.module('letusgoApp').controller('CartCtrl', function ($scope, CartItemSe
 
   var categorys = [];
   var cartLists = [];
-  var cartItems = CartItemService.category(categorys, cartLists);
+  CartItemService.showCartList(function(cartList) {
 
-  $scope.$emit('parentCart');
+    $scope.$emit('parentCart');
+    var cart = cartList;
 
-  if (cartItems.length === 0) {
-    $scope.pay = '返回商城';
-    $scope.url = '#/items';
-  }
-  else {
-    $scope.cartItems = cartItems;
-    $scope.pay = '小二算账';
-    $scope.url = '#/pay';
+    if (cart.length === 0) {
+      $scope.pay = '返回商城';
+      $scope.url = '#/items';
+    }
+    else {
+      $scope.cartItems = cartList;
+      $scope.pay = '小二算账';
+      $scope.url = '#/pay';
+    }
+  });
 
-  }
+
+
 
   $scope.reduce = function (cartItem) {
     ItemsService.reduceCount();
