@@ -22,7 +22,9 @@ angular.module('letusgoApp').controller('CategoryCtrl', function ($scope, Catego
 
   $scope.removes = function (category) {
     CategoryService.removes(category);
-    $scope.categorys = CategoryService.loadCategory();
+    CategoryService.loadCategories(function(data){
+      $scope.categorys = data;
+    });
 
   };
 
