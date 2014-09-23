@@ -1,40 +1,13 @@
 'use strict';
 
-angular.module('letusgoApp').service('CartItemService', function (localStorageService) {
+angular.module('letusgoApp').service('CartItemService', function ($http, localStorageService) {
 
-  this.cartList = function (cartLists) {
-    cartLists = localStorageService.get('cartList');
-    return cartLists;
+  this.loadCartItems = function (callback) {
+    $http.get('/api/cartItems').success(function (data) {
+      callback(data);
+    });
   };
 
-  this.category = function (categorys, cartLists) {
-    var cartItems = [];
-    var category = {};
-    cartLists = localStorageService.get('cartList') || cartLists;
-
-    for (var i = 0; i < cartLists.length; i++) {
-      category = cartLists[i].item.category;
-      if (categorys.indexOf(category) === -1) {
-        categorys.push(category);
-      }
-    }
-
-    for (var k = 0; k < categorys.length; k++) {
-      var item = [];
-      for (var j = 0; j < cartLists.length; j++) {
-        if (categorys[k] === cartLists[j].item.category) {
-          item.push(cartLists[j]);
-        }
-      }
-      if (item.length !== 0) {
-        category = {'category': categorys[k], 'item': item};
-        cartItems.push(category);
-        localStorageService.set('cartItem', cartItems);
-        localStorageService.set(categorys[k], category);
-      }
-    }
-    return cartItems;
-  };
 
   this.reduceNumber = function (cartItem) {
     var cartLists;
