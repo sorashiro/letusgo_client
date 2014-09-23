@@ -26,30 +26,30 @@ angular.module('letusgoApp').service('ItemsService', function ($http, localStora
     return count;
   };
 
-  this.addToCart = function (cartList, names, item) {
+this.addToCart = function (item) {
 
-    var cart;
-    var name = item.name;
-    var num = 1;
+    $http.get('/api/cartItems').success(function (data) {
+      var cartList = data || [];
+      var num = 1;
+      var cart = {'item': item, 'num': num};
 
-    cart = {'item': item, 'num': num};
-    names = this.get('names') || names;
+      var items = _.pluck(cartList, 'item');
+      var ids = _.pluck(items, 'id');
 
-    var has = names.indexOf(name);
-    cartList = this.get('cartList') || cartList;
-    if (has === -1) {
-      cartList.push(cart);
-      names.push(name);
-    }
-    else {
-      for (var i = 0; i < cartList.length; i++) {
-        if (cartList[i].item.name === name) {
-          cartList[i].num++;
-        }
+      var exist = ids.indexOf(item.id);
+      if (exist === -1) {
+        cartList.push(cart);
       }
-    }
-    this.add('names', names);
-    this.add('cartList', cartList);
+      else {
+        _.forEach(cartList, function (existItem, index) {
+          if (item.id === existItem.item.id) {
+            cartList[index].num++;
+            console.log(cartList);
+          }
+        })
+      }
+      $http.post('/api/cartItems', {cartItems: cartList});
+    });
   };
 
   this.add = function (key, value) {
