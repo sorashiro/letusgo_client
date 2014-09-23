@@ -41,10 +41,9 @@ this.addToCart = function (item) {
         cartList.push(cart);
       }
       else {
-        _.forEach(cartList, function (existItem, index) {
+        _.forEach(cartList, function (existItem) {
           if (item.id === existItem.item.id) {
-            cartList[index].num++;
-            console.log(cartList);
+            existItem.num++;
           }
         })
       }
