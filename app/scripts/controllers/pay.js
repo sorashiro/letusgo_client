@@ -14,8 +14,7 @@ angular.module('letusgoApp').controller('PayCtrl', function ($scope, ItemsServic
 
   $scope.account = function () {
 
-    ItemsService.remove('cartList');
-    ItemsService.remove('names');
+    ItemsService.remove();
     ItemsService.add('clickcount', 0);
 
     $scope.$emit('parentCount');
