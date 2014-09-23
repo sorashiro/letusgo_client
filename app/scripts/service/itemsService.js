@@ -51,6 +51,10 @@ this.addToCart = function (item) {
     });
   };
 
+  this.remove = function (){
+    $http.delete('/api/cartItems');
+  };
+
   this.add = function (key, value) {
     return localStorageService.set(key, value);
   };
@@ -58,9 +62,4 @@ this.addToCart = function (item) {
   this.get = function (key) {
     return localStorageService.get(key);
   };
-
-  this.remove = function (key) {
-    return localStorageService.remove(key);
-  };
-
 });
