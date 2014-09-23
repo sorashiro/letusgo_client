@@ -2,9 +2,6 @@
 
 angular.module('letusgoApp').service('CategoryService', function ($http, localStorageService, ItemsService) {
 
-//    ItemsService.add('categorys', categorys);
-
-
   this.loadCategories = function (callback) {
     $http.get('/api/categories').success(function (data) {
       callback(data);
