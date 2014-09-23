@@ -8,8 +8,8 @@ angular.module('letusgoApp').service('CartItemService', function ($http, localSt
     });
   };
 
-  this.showCartList = function(callback) {
-    this.loadCartItems(function(data) {
+  this.showCartList = function (callback) {
+    this.loadCartItems(function (data) {
       var cartList = [];
       var cart = {};
       var cartItems = data || [];
@@ -17,10 +17,10 @@ angular.module('letusgoApp').service('CartItemService', function ($http, localSt
       var items = _.pluck(cartItems, 'item');
       var categories = _.uniq(_.pluck(items, 'category'));
 
-      _.forEach(categories, function(category) {
+      _.forEach(categories, function (category) {
         var showItem = [];
 
-        _.forEach(cartItems, function(cartItem) {
+        _.forEach(cartItems, function (cartItem) {
           if (category === cartItem.item.category) {
             showItem.push(cartItem);
           }
@@ -66,13 +66,16 @@ angular.module('letusgoApp').service('CartItemService', function ($http, localSt
     localStorageService.set('cartList', cartLists);
   };
 
-  this.getTotal = function () {
-    var total = 0;
-    var cartLists = localStorageService.get('cartList') || [];
+  this.getTotal = function (callback) {
+    this.loadCartItems(function (data) {
+      var total = 0;
+      var cartItems = data || [];
 
-    for (var i = 0; i < cartLists.length; i++) {
-      total += cartLists[i].num * cartLists[i].item.price;
-    }
-    return total;
+      _.forEach(cartItems, function(cartItem) {
+        total += cartItem.num * cartItem.item.price;
+      });
+      
+      callback(total);
+    })
   };
 });
