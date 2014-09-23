@@ -12,10 +12,12 @@ angular.module('letusgoApp').service('CategoryService', function ($http, localSt
   };
 
   this.addCategory = function(category) {
+
     this.loadCategories(function(data) {
       var categories = data;
       var ids = _.pluck(categories, 'id');
       var maxId = _.max(ids);
+
       categories.push({category: category, id: maxId+1});
       $http.post('/api/categories', {categories: categories});
     })
