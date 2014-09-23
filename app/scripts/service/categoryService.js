@@ -20,22 +20,60 @@ angular.module('letusgoApp').service('CategoryService', function ($http, localSt
     })
   };
 
-  this.removes = function (category) {
-    var items = ItemsService.get('itemsList');
+//  this.removes = function (category) {
+//    var items = ItemsService.get('itemsList') || [];
+//
+//    for (var i = 0; i < items.length; i++) {
+//      if (category === items[i].category) {
+//        if (items[i].name) {
+//          alert('该分类下有商品，不能删除！');
+//          break;
+//        }
+//        else {
+//          items.splice(i, 1);
+//          i--;
+//        }
+//      }
+//    }
+//    ItemsService.add('itemsList', items);
+//  };
 
-    for (var i = 0; i < items.length; i++) {
-      if (category === items[i].category) {
-        if (items[i].name) {
-          alert('该分类下有商品，不能删除！');
-          break;
+  function existItem(category, callback) {
+    var items = ItemsService.loadItems();
+
+      _.forEach(items, function (item) {
+        if (category.category === item.category) {
+          alert('该分类下有商品，不能删除~');
+          return false;
         }
-        else {
-          items.splice(i, 1);
-          i--;
+        else{
+          callback(true);
         }
-      }
+      });
     }
-    ItemsService.add('itemsList', items);
+
+//  this.removes = function (category) {
+//
+//    ItemsService.loadItems(function (data) {
+//      var items = data;
+//
+//      _.forEach(items, function(item) {
+//        if(category.category === item.category) {
+//          alert('该分类下有商品，不能删除~');
+//          return false;
+//        }
+//        else {
+//          $http.delete('/api/categories/' + category.id);
+//        }
+//      })
+//    });
+//  };
+
+  this.removes = function(category, callback) {
+
+      $http.delete('/api/categories/' + category.id).success(function(data){
+        callback(data);
+      });
   };
 
   this.modify = function (category) {
