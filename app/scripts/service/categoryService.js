@@ -69,11 +69,9 @@ angular.module('letusgoApp').service('CategoryService', function ($http, localSt
 //    });
 //  };
 
-  this.removes = function(category, callback) {
+  this.removes = function(category) {
 
-      $http.delete('/api/categories/' + category.id).success(function(data){
-        callback(data);
-      });
+      $http.delete('/api/categories/' + category.id);
   };
 
   this.modify = function (category) {
