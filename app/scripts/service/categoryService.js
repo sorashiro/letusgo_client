@@ -97,4 +97,12 @@ angular.module('letusgoApp').service('CategoryService', function ($http, localSt
     ItemsService.add('itemsList', items);
   };
 
+  this.modifyCategory = function(category, newName, callback) {
+    console.log(category);
+    category = {category: newName, id: category.id};
+    $http.put('/api/categories/' + category.id, {category: category}).success(function(data) {
+      callback(data);
+    })
+  }
+
 });
