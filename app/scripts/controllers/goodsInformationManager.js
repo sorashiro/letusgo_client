@@ -14,7 +14,8 @@ angular.module('letusgoApp').controller('GoodsInformationCtrl', function ($scope
   $scope.categoryName = '分类名称';
 
   $scope.getName = function (category) {
-    $scope.categoryName = category;
+    console.log(category);
+    $scope.categoryName = category.category;
   };
 
   $scope.addGoods = function () {
