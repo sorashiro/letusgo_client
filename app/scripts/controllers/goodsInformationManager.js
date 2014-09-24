@@ -3,8 +3,14 @@
 angular.module('letusgoApp').controller('GoodsInformationCtrl', function ($scope, ItemsService, CategoryService, GoodsInformationService) {
 
   $scope.$emit('parentManage');
-  $scope.loadGoodsInformations = ItemsService.loadItems();
-  $scope.categorys = CategoryService.loadCategory();
+
+  ItemsService.loadItems(function(data) {
+    $scope.loadGoodsInformations = data;
+  });
+
+  CategoryService.loadCategories(function(data){
+    $scope.categorys = data;
+  });
   $scope.categoryName = '分类名称';
 
   $scope.getName = function (category) {
@@ -26,7 +32,9 @@ angular.module('letusgoApp').controller('GoodsInformationCtrl', function ($scope
 
   $scope.remove = function (goodsInformation) {
     GoodsInformationService.remove(goodsInformation);
-    $scope.loadGoodsInformations = ItemsService.loadItems();
+    ItemsService.loadItems(function(data) {
+      $scope.loadGoodsInformations = data;
+    });
   };
 
   $scope.change = function (goodsInformation) {
