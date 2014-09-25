@@ -35,21 +35,36 @@ angular.module('letusgoApp').service('CartItemService', function ($http, localSt
     })
   };
 
-  this.reduceNumber = function (cartItem) {
-    var cartLists;
-    cartLists = localStorageService.get('cartList');
-    var name;
-    name = cartItem.name;
+//  this.reduceNumber = function (cartItem) {
+//    var cartLists;
+//    cartLists = localStorageService.get('cartList');
+//    var name;
+//    name = cartItem.name;
+//
+//    for (var i = 0; i < cartLists.length; i++) {
+//      if (name === cartLists[i].item.name) {
+//        cartLists[i].num--;
+//        if (cartLists[i].num === 0) {
+//          cartLists.splice(i, 1);
+//        }
+//      }
+//    }
+//    localStorageService.set('cartList', cartLists);
+//  };
 
-    for (var i = 0; i < cartLists.length; i++) {
-      if (name === cartLists[i].item.name) {
-        cartLists[i].num--;
-        if (cartLists[i].num === 0) {
-          cartLists.splice(i, 1);
+  this.reduceNumber = function (item, callback) {
+    this.loadCartItems(function(data) {
+      var cartItems = data;
+      var name = item.name;
+      _.forEach(cartItems, function(cartItem) {
+        if(name === cartItem.item.name) {
+          cartItem.num--;
         }
-      }
-    }
-    localStorageService.set('cartList', cartLists);
+      });
+      $http.post('/api/cartItems/', {cartItems: cartItems}).success(function(data) {
+        callback(data);
+      })
+    })
   };
 
   this.plusNumber = function (cartItem) {
