@@ -93,4 +93,14 @@ angular.module('letusgoApp').service('CartItemService', function ($http, localSt
       callback(total);
     })
   };
+
+  this.remove = function(callback) {
+    this.loadCartItems(function (data) {
+      var cartItems = data || [];
+
+      $http.post('/api/cartItems/payment', {cartItems: cartItems}).success(function(data) {
+        callback(data);
+      })
+    })
+  };
 });
