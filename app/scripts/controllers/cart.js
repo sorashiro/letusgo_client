@@ -35,7 +35,9 @@ angular.module('letusgoApp').controller('CartCtrl', function ($scope, CartItemSe
     $scope.$emit('parentCount');
 
     CartItemService.plusNumber(cartItem);
-    $scope.cartItems = CartItemService.category(categorys, cartLists);
+    CartItemService.showCartList(function(cartList) {
+      $scope.cartItems = cartList;
+    })
   };
 
 });
