@@ -1,14 +1,16 @@
 'use strict';
 
-angular.module('letusgoApp').controller('ModifyGoodsCtrl', function ($scope, CategoryService, GoodsInformationService) {
+angular.module('letusgoApp').controller('ModifyGoodsCtrl', function ($scope, $location, CategoryService, GoodsInformationService) {
 
   $scope.$emit('parentManage');
-  var item = GoodsInformationService.getItem();
-  $scope.item = item;
-  $scope.categorys = CategoryService.loadCategory();
+  $scope.item = GoodsInformationService.getItem();
 
-  if(item) {
-    $scope.categoryName = item.category;
+  CategoryService.loadCategories(function(data){
+    $scope.categorys = data.category;
+  });
+
+  if($scope.item) {
+    $scope.categoryName = $scope.item.category;
   }
 
   $scope.changeName = function (category) {
