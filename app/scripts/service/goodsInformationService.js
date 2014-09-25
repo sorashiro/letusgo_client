@@ -63,7 +63,6 @@ angular.module('letusgoApp').service('GoodsInformationService', function ($http,
 //});
 
   this.modify = function (item, category, name, unit, price) {
-
     var newItem = {category: category, name: name, unit: unit, price: price, id: item.id};
 
     $http.put('/api/items/' + item.id, {item: newItem});
