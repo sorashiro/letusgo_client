@@ -51,21 +51,12 @@ angular.module('letusgoApp').service('CartItemService', function ($http, localSt
 //    }
 //    localStorageService.set('cartList', cartLists);
 //  };
+//
 
-  this.reduceNumber = function (item, callback) {
-    this.loadCartItems(function(data) {
-      var cartItems = data;
-      var name = item.name;
-      _.forEach(cartItems, function(cartItem) {
-        if(name === cartItem.item.name) {
-          cartItem.num--;
-        }
-      });
-      $http.post('/api/cartItems/', {cartItems: cartItems}).success(function(data) {
-        callback(data);
-      })
-    })
+  this.reduceNumber = function (item) {
+    $http.post('/api/cartItems/reduce', {id: item.id});
   };
+
 
   this.plusNumber = function (cartItem) {
     var cartLists;
