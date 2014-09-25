@@ -6,7 +6,7 @@ angular.module('letusgoApp').controller('ModifyGoodsCtrl', function ($scope, $lo
   $scope.item = GoodsInformationService.getItem();
 
   CategoryService.loadCategories(function(data){
-    $scope.categorys = data.category;
+    $scope.categorys = data;
   });
 
   if($scope.item) {
