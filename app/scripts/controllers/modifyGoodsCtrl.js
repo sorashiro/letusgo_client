@@ -22,6 +22,5 @@ angular.module('letusgoApp').controller('ModifyGoodsCtrl', function ($scope, $lo
     var unit = $scope.unit;
     var price = $scope.price;
     GoodsInformationService.modify($scope.item, $scope.categoryName, name, unit, price);
-    alert('修改成功！');
   };
 });

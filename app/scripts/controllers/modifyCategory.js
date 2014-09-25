@@ -8,6 +8,5 @@ angular.module('letusgoApp').controller('ModifyCategoryCtrl', function ($scope, 
   $scope.modifyCategory = function () {
     var newName = $scope.input;
     CategoryService.modifyCategory($scope.category, newName);
-    alert('修改成功！');
   };
 });
