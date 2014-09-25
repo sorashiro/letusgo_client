@@ -84,23 +84,9 @@ angular.module('letusgoApp').service('CategoryService', function ($http, localSt
     return category;
   };
 
-  this.modifyCategory = function (category, newName) {
-    var items = ItemsService.get('itemsList');
-
-    for (var i = 0; i < items.length; i++) {
-      if (category === items[i].category) {
-        items[i].category = newName;
-      }
-    }
-    ItemsService.add('itemsList', items);
-  };
-
-  this.modifyCategory = function(category, newName, callback) {
-    console.log(category);
+  this.modifyCategory = function(category, newName) {
     category = {category: newName, id: category.id};
-    $http.put('/api/categories/' + category.id, {category: category}).success(function(data) {
-      callback(data);
-    })
+    $http.put('/api/categories/' + category.id, {category: category});
   }
 
 });
