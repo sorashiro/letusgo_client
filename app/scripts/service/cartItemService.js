@@ -35,41 +35,12 @@ angular.module('letusgoApp').service('CartItemService', function ($http, localSt
     })
   };
 
-//  this.reduceNumber = function (cartItem) {
-//    var cartLists;
-//    cartLists = localStorageService.get('cartList');
-//    var name;
-//    name = cartItem.name;
-//
-//    for (var i = 0; i < cartLists.length; i++) {
-//      if (name === cartLists[i].item.name) {
-//        cartLists[i].num--;
-//        if (cartLists[i].num === 0) {
-//          cartLists.splice(i, 1);
-//        }
-//      }
-//    }
-//    localStorageService.set('cartList', cartLists);
-//  };
-//
-
   this.reduceNumber = function (item) {
     $http.post('/api/cartItems/reduce', {id: item.id});
   };
 
-
-  this.plusNumber = function (cartItem) {
-    var cartLists;
-    cartLists = localStorageService.get('cartList');
-    var name;
-    name = cartItem.name;
-
-    for (var i = 0; i < cartLists.length; i++) {
-      if (name === cartLists[i].item.name) {
-        cartLists[i].num++;
-      }
-    }
-    localStorageService.set('cartList', cartLists);
+  this.plusNumber = function (item) {
+    $http.post('/api/cartItems/plus', {id: item.id});
   };
 
   this.getTotal = function (callback) {
