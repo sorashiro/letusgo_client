@@ -25,13 +25,11 @@ angular.module('letusgoApp').service('CategoryService', function ($http, localSt
   };
 
   this.modify = function (category) {
-    var categoryName = category;
-    ItemsService.add('modifyCategory', categoryName);
+    ItemsService.add('modifyCategory', category);
   };
 
   this.getName = function () {
-    var category = ItemsService.get('modifyCategory');
-    return category;
+    return ItemsService.get('modifyCategory');
   };
 
   this.modifyCategory = function(category, newName) {
