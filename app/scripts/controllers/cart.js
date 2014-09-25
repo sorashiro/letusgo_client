@@ -23,12 +23,22 @@ angular.module('letusgoApp').controller('CartCtrl', function ($scope, CartItemSe
 
 
 
+//  $scope.reduce = function (cartItem) {
+//    ItemsService.reduceCount();
+//    $scope.$emit('parentCount');
+//
+//    CartItemService.reduceNumber(cartItem);
+//    $scope.cartItems = CartItemService.category(categorys, cartLists);
+//  };
+
   $scope.reduce = function (cartItem) {
     ItemsService.reduceCount();
     $scope.$emit('parentCount');
 
     CartItemService.reduceNumber(cartItem);
-    $scope.cartItems = CartItemService.category(categorys, cartLists);
+    CartItemService.showCartList(function(cartList) {
+      $scope.cartItems = cartList;
+    })
   };
 
   $scope.plus = function (cartItem) {
