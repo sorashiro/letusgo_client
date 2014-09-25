@@ -11,13 +11,12 @@ angular.module('letusgoApp').controller('PayCtrl', function ($scope, ItemsServic
     $scope.total = total;
   });
 
-
   $scope.account = function () {
+    CartItemService.remove(function(data) {
+      $scope.cartItems = data;
+    });
 
-    ItemsService.remove();
     ItemsService.add('clickcount', 0);
-
     $scope.$emit('parentCount');
-    alert('付款成功，期待您下次光临~');
   };
 });
