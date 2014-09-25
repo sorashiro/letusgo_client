@@ -14,14 +14,14 @@ angular.module('letusgoApp').controller('ModifyGoodsCtrl', function ($scope, $lo
   }
 
   $scope.changeName = function (category) {
-    $scope.categoryName = category;
+    $scope.categoryName = category.category;
   };
 
   $scope.modify = function () {
     var name = $scope.name;
     var unit = $scope.unit;
     var price = $scope.price;
-    GoodsInformationService.modify($scope.categoryName, name, unit, price);
+    GoodsInformationService.modify($scope.item, $scope.categoryName, name, unit, price);
     alert('修改成功！');
   };
 });
