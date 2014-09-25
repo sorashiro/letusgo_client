@@ -38,6 +38,7 @@ angular.module('letusgoApp').controller('GoodsInformationCtrl', function ($scope
   };
 
   $scope.change = function (goodsInformation) {
-    GoodsInformationService.change(goodsInformation);
+    GoodsInformationService.changeItem(goodsInformation);
   };
+
 });
