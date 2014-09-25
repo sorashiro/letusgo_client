@@ -18,18 +18,6 @@ angular.module('letusgoApp').service('GoodsInformationService', function ($http,
     $http.delete('/api/items/' + goodsInformation.id);
   };
 
-//  this.change = function (goodsInformation) {
-//    var items = ItemsService.loadItems();
-//    var item;
-//
-//    for (var i = 0; i < items.length; i++) {
-//      if (goodsInformation.name === items[i].name) {
-//        item = items[i];
-//      }
-//      ItemsService.add('modifyItem', item);
-//    }
-//  };
-//
   this.changeItem = function(item) {
     var modifyItem = item;
     ItemsService.add('modifyItem', modifyItem);
@@ -39,28 +27,6 @@ angular.module('letusgoApp').service('GoodsInformationService', function ($http,
     var item = ItemsService.get('modifyItem') || [];
     return item;
   };
-
-//  this.getItem = function(callback) {
-//    var item = this.change();
-//    $http.get('/api/items/' + goodsInformation.id).success(function(data) {
-//      callback(data);
-//    })
-//  };
-
-//  this.modify = function (category, name, unit, price) {
-//    var items = ItemsService.get('itemsList');
-//    var item = this.getItem();
-//    var newItem = {category: category, name: name, unit: unit, price: price};
-//
-//    for (var i = 0; i < items.length; i++) {
-//      if (item.name === items[i].name) {
-//        items.splice(i, 1, newItem);
-//        break;
-//      }
-//    }
-//    ItemsService.add('itemsList', items);
-//  };
-//});
 
   this.modify = function (item, category, name, unit, price) {
     var newItem = {category: category, name: name, unit: unit, price: price, id: item.id};
