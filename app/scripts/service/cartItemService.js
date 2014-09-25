@@ -18,22 +18,25 @@ angular.module('letusgoApp').service('CartItemService', function ($http) {
       var categories = _.uniq(_.pluck(items, 'category'));
 
       _.forEach(categories, function (category) {
-        var showItem = [];
-
-        _.forEach(cartItems, function (cartItem) {
-          if (category === cartItem.item.category) {
-            showItem.push(cartItem);
-          }
-        });
-
-        if (showItem.length !== 0) {
-          cart = {category: category, item: showItem};
+        var showItems = getShowItems(cartItems, category);
+        if (showItems.length !== 0) {
+          cart = {category: category, item: showItems};
           cartList.push(cart);
         }
       });
       callback(cartList);
     })
   };
+
+  function getShowItems(cartItems, category) {
+    var showItems = [];
+    _.forEach(cartItems, function(cartItem) {
+      if (category === cartItem.item.category) {
+        showItems.push(cartItem);
+      }
+    });
+    return showItems;
+  }
 
   this.reduceNumber = function (item) {
     $http.post('/api/cartItems/reduce', {id: item.id});
