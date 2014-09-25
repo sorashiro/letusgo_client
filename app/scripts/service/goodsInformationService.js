@@ -30,17 +30,15 @@ angular.module('letusgoApp').service('GoodsInformationService', function ($http,
 //    }
 //  };
 //
-  this.changeItem = function(item, callback) {
-
-    $http.get('/api/items/' + item.id).success(function(data) {
-      callback(data);
-    });
+  this.changeItem = function(item) {
+    var modifyItem = item;
+    ItemsService.add('modifyItem', modifyItem);
   };
 
-//  this.getItem = function () {
-//    var item = ItemsService.get('modifyItem') || [];
-//    return item;
-//  };
+  this.getItem = function () {
+    var item = ItemsService.get('modifyItem') || [];
+    return item;
+  };
 
 //  this.getItem = function(callback) {
 //    var item = this.change();
