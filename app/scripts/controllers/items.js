@@ -2,9 +2,6 @@
 
 angular.module('letusgoApp').controller('ItemsCtrl', function ($scope, ItemsService) {
 
-  var cartList = [];
-  var names = [];
-
   ItemsService.loadItems(function(data) {
       $scope.items = data
   });
