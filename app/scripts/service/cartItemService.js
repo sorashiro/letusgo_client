@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('letusgoApp').service('CartItemService', function ($http, localStorageService) {
+angular.module('letusgoApp').service('CartItemService', function ($http) {
 
   this.loadCartItems = function (callback) {
     $http.get('/api/cartItems').success(function (data) {
