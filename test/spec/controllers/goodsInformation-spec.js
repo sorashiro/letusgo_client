@@ -34,10 +34,15 @@ describe('Controller: GoodsCtrl', function () {
   });
 
   it('should load goods information', function() {
-    spyOn(ItemsService, 'loadItems');
+    spyOn(ItemsService, 'loadItems').and.callFake(function(callback){
+      var mockItems = [{'category': 'fruit', 'name': 'apple', 'unit': '斤', 'price': '5.50', id: 1}];
+      callback(mockItems);
+    });
     createController();
-    $scope.loadGoodsInformations = ItemsService.loadItems();
-    expect(ItemsService.loadItems).toHaveBeenCalled();
+    ItemsService.loadItems(function(data){
+      expect($scope.loadGoodsInformations).toEqual(data);
+      expect(ItemsService.loadItems).toHaveBeenCalled();
+    });
   });
 
   it('should load categories', function() {
