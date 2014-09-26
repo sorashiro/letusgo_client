@@ -71,12 +71,22 @@ describe('Controller: CartCtrl', function () {
     expect($scope.url).toBe('#/items');
 
   });
+
   it('quantity should reduce', function() {
     spyOn(ItemsService, 'reduceCount');
+    spyOn($scope, '$emit');
     spyOn(CartService, 'reduceNumber');
+    spyOn(CartService, 'showCartList').and.callFake(function(callback) {
+      var cartList = cartItem;
+        callback(cartList);
+    });
     createController();
 
     $scope.reduce(cartItem);
+    CartService.showCartList(function(data) {
+      expect($scope.cartItems).toEqual(data);
+    });
+    expect($scope.$emit).toHaveBeenCalledWith('parentCount');
     expect(ItemsService.reduceCount).toHaveBeenCalled();
     expect(CartService.reduceNumber).toHaveBeenCalledWith(cartItem);
   });
