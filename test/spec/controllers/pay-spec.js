@@ -33,10 +33,15 @@ describe('Controller: PayCtrl', function () {
   });
 
   it('should get total', function() {
-    spyOn(CartService, 'getTotal');
+    spyOn(CartService, 'getTotal').and.callFake(function(callback){
+      var total = 5.50;
+      callback(total);
+    });
     createController();
-    $scope.total = CartService.getTotal();
-    expect(CartService.getTotal).toHaveBeenCalled();
+    CartService.getTotal(function(data){
+      expect($scope.total).toEqual(data);
+      expect(CartService.getTotal).toHaveBeenCalled();
+    });
   });
 
   it('success to pay', function() {
