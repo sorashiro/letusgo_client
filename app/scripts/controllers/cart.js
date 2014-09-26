@@ -2,8 +2,6 @@
 
 angular.module('letusgoApp').controller('CartCtrl', function ($scope, CartItemService, ItemsService) {
 
-  var categorys = [];
-  var cartLists = [];
   CartItemService.showCartList(function(cartList) {
 
     $scope.$emit('parentCart');
