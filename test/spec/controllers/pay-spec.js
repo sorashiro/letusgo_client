@@ -40,6 +40,7 @@ describe('Controller: PayCtrl', function () {
     createController();
     CartService.loadCartItems(function(data) {
       expect($scope.cartItems).toEqual(data);
+      expect(CartService.loadCartItems).toHaveBeenCalled();
     })
   });
 
@@ -56,12 +57,18 @@ describe('Controller: PayCtrl', function () {
   });
 
   it('success to pay', function() {
-    spyOn(ItemsService, 'remove');
+    spyOn(ItemsService, 'remove').and.callFake(function(callback) {
+      var cartItems = [];
+      callback(cartItems);
+    });
     spyOn(ItemsService, 'add');
     spyOn($scope, '$emit');
     createController();
     $scope.account();
-    expect(ItemsService.add).toHaveBeenCalled();
-    expect($scope.$emit).toHaveBeenCalledWith('parentCount');
+    CartService.remove(function(data) {
+      expect($scope.cartItems).toEqual(data);
+      expect(ItemsService.add).toHaveBeenCalled();
+      expect($scope.$emit).toHaveBeenCalledWith('parentCount');
+    });
   });
 });
