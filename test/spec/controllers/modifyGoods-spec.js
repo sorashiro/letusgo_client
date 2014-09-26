@@ -58,12 +58,12 @@ describe('Controller: ModifyGoodsCtrl', function () {
     expect($scope.categoryName).toBe('fruit');
   });
 
-  xit('should change category name', function() {
+  it('should change category name', function() {
     createController();
-    var category = 'food';
+    var category = {category: 'fruit', id: 1};
     $scope.changeName(category);
 
-    expect($scope.categoryName).toBe('food');
+    expect($scope.categoryName).toEqual('fruit');
   });
 
   it('should modify goods information', function() {
