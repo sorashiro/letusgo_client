@@ -44,32 +44,28 @@ describe('Controller: CartCtrl', function () {
     CartService.showCartList(function(data) {
       var cart = data;
       expect(cart).toEqual(data);
+      expect($scope.cartItems).toEqual(data);
       expect($scope.$emit).toHaveBeenCalledWith('parentCart');
       expect($scope.pay).toEqual('小二算账');
       expect($scope.url).toEqual('#/pay');
     });
   });
 
-  xit('should show correct route', function() {
-    spyOn(CartService, 'category').and.returnValue(cartItem);
+  it('should show correct route', function() {
+    spyOn(CartService, 'showCartList').and.callFake(function(callback) {
+      var cartList = [];
+      callback(cartList);
+    });
+    spyOn($scope, '$emit');
     createController();
 
-    var categorys = [];
-    var cartLists = [];
-    var cartItems = CartService.category(categorys, cartLists);
-    expect(cartItems).toBe(cartItem);
-    expect($scope.pay).toBe('小二算账');
-    expect($scope.url).toBe('#/pay');
-
-  });
-
-  xit('should show correct route', function() {
-    spyOn(CartService, 'category').and.returnValue([]);
-    createController();
-
-    expect($scope.pay).toBe('返回商城');
-    expect($scope.url).toBe('#/items');
-
+    CartService.showCartList(function(data) {
+      var cart = data;
+      expect(cart).toEqual(data);
+      expect($scope.$emit).toHaveBeenCalledWith('parentCart');
+      expect($scope.pay).toEqual('返回商城');
+      expect($scope.url).toEqual('#/items');
+    });
   });
 
   it('quantity should reduce', function() {
