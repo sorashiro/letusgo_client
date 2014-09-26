@@ -29,10 +29,16 @@ describe('Controller: ItemsCtrl', function () {
   });
 
   it('should load categories', function() {
-    spyOn(CategoryService, 'loadCategory');
+    spyOn(CategoryService, 'loadCategories').and.callFake(function(callback){
+      var categories = [{category: 'fruit', id: 1}];
+      callback(categories);
+    });
+
     createController();
-    $scope.categorys = CategoryService.loadCategory();
-    expect(CategoryService.loadCategory).toHaveBeenCalled();
+    CategoryService.loadCategories = function(data){
+      expect($scope.categorys).toEqual(data);
+      expect(CategoryService.loadCategories).toHaveBeenCalled();
+    };
   });
 
   it('add new category', function() {
