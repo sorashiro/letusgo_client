@@ -35,7 +35,7 @@ describe('Controller: ModifyCategoryCtrl', function () {
     expect(CategoryService.getName).toHaveBeenCalled();
   });
 
-  xit('modify category name', function() {
+  it('modify category name', function() {
     spyOn(CategoryService, 'modifyCategory');
     spyOn(CategoryService, 'getName');
     createController();
