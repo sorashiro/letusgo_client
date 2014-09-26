@@ -21,11 +21,14 @@ describe('Controller: ItemsCtrl', function () {
       };
     });
   });
-  xit('should return all items to items', function () {
+  it('should return all items to items', function () {
     spyOn(ItemsService, 'loadItems');
     createController();
-    var items = ItemsService.loadItems();
-    expect($scope.items).toEqual(items);
+    ItemsService.loadItems(function(data) {
+      var items = data;
+      expect($scope.items).toEqual(items);
+      expect(ItemsService.loadItems).toHaveBeenCalled();
+    });
   });
 
   it('emit from parent controller', function() {
