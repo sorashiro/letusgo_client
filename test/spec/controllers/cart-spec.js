@@ -89,10 +89,19 @@ describe('Controller: CartCtrl', function () {
 
   it('quantity should increase', function() {
     spyOn(ItemsService, 'count');
+    spyOn($scope, '$emit');
     spyOn(CartService, 'plusNumber');
+    spyOn(CartService, 'showCartList').and.callFake(function(callback) {
+      var cartList = cartItem;
+      callback(cartList);
+    });
     createController();
 
     $scope.plus(cartItem);
+    CartService.showCartList(function(data) {
+      expect($scope.cartItems).toEqual(data);
+    });
+    expect($scope.$emit).toHaveBeenCalledWith('parentCount');
     expect(ItemsService.count).toHaveBeenCalled();
     expect(CartService.plusNumber).toHaveBeenCalledWith(cartItem);
   });
