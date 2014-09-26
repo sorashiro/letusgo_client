@@ -32,6 +32,17 @@ describe('Controller: PayCtrl', function () {
     expect(ItemsService.get).toHaveBeenCalled();
   });
 
+  it('should load cart items', function() {
+    spyOn(CartService, 'loadCartItems').and.callFake(function(callback){
+      var cartItems = [{'item': {'category': 'fruit', 'name': 'apple', 'unit': '斤', 'price': '5.50', id: 1}, 'num': 1}];
+      callback(cartItems);
+    });
+    createController();
+    CartService.loadCartItems(function(data) {
+      expect($scope.cartItems).toEqual(data);
+    })
+  });
+
   it('should get total', function() {
     spyOn(CartService, 'getTotal').and.callFake(function(callback){
       var total = 5.50;
