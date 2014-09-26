@@ -61,11 +61,18 @@ describe('Controller: ItemsCtrl', function () {
 
   it('remove category', function() {
     spyOn(CategoryService, 'removes');
-    spyOn(CategoryService, 'loadCategory');
+    spyOn(CategoryService, 'loadCategories').and.callFake(function(callback){
+      var categories = [{category: 'fruit', id: 1}];
+      callback(categories);
+    });
+
     createController();
     $scope.removes();
+    CategoryService.loadCategories = function(data){
+      expect($scope.categorys).toEqual(data);
+      expect(CategoryService.loadCategories).toHaveBeenCalled();
+    };
     expect(CategoryService.removes).toHaveBeenCalled();
-    expect(CategoryService.loadCategory).toHaveBeenCalled();
   });
 
   it('should change category name', function() {
