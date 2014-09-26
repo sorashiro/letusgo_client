@@ -25,7 +25,7 @@ angular.module('letusgoApp').controller('CartCtrl', function ($scope, CartItemSe
     CartItemService.reduceNumber(cartItem);
     CartItemService.showCartList(function(cartList) {
       $scope.cartItems = cartList;
-    })
+    });
   };
 
   $scope.plus = function (cartItem) {
@@ -35,7 +35,7 @@ angular.module('letusgoApp').controller('CartCtrl', function ($scope, CartItemSe
     CartItemService.plusNumber(cartItem);
     CartItemService.showCartList(function(cartList) {
       $scope.cartItems = cartList;
-    })
+    });
   };
 
 });
