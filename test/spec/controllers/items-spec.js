@@ -42,12 +42,10 @@ describe('Controller: ItemsCtrl', function () {
     expect(ItemsService.count).toHaveBeenCalled();
   });
 
-  xit('item should be added to cart', function() {
+  it('item should be added to cart', function() {
     spyOn(ItemsService, 'addToCart');
     createController();
-    var item = {'category': 'fruit', 'name': 'apple', 'unit': '斤', 'price': '5.50'};
-    var cartList = [];
-    var names = [];
+    var item = {'category': 'fruit', 'name': 'apple', 'unit': '斤', 'price': '5.50', id: 1};
     $scope.addToCart(item);
     expect(ItemsService.addToCart).toHaveBeenCalledWith(item);
   });
