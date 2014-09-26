@@ -19,13 +19,11 @@ angular.module('letusgoApp').service('GoodsInformationService', function ($http,
   };
 
   this.changeItem = function(item) {
-    var modifyItem = item;
-    ItemsService.add('modifyItem', modifyItem);
+    this.modifyItem = item;
   };
 
-  this.getItem = function () {
-    var item = ItemsService.get('modifyItem') || [];
-    return item;
+  this.getItem = function() {
+    return this.modifyItem;
   };
 
   this.modify = function (item, category, name, unit, price) {
