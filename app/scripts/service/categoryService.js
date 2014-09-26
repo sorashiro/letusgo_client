@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('letusgoApp').service('CategoryService', function ($http, localStorageService, ItemsService) {
+angular.module('letusgoApp').service('CategoryService', function ($http) {
 
   this.loadCategories = function (callback) {
     $http.get('/api/categories').success(function (data) {
