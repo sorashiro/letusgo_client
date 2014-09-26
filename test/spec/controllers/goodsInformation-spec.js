@@ -85,19 +85,26 @@ describe('Controller: GoodsCtrl', function () {
 
   it('should remove goods', function() {
     spyOn(GoodsService, 'remove');
-    spyOn(ItemsService, 'loadItems');
-    createController();
+    spyOn(ItemsService, 'loadItems').and.callFake(function(callback){
+      var mockItems = [{'category': 'fruit', 'name': 'apple', 'unit': '斤', 'price': '5.50', id: 1}];
+      callback(mockItems);
+    });
 
+    createController();
     $scope.remove();
-    expect(GoodsService.remove).toHaveBeenCalled();
-    expect(ItemsService.loadItems).toHaveBeenCalled();
+    ItemsService.loadItems(function(data){
+      expect(GoodsService.remove).toHaveBeenCalled();
+      expect($scope.loadGoodsInformations).toEqual(data);
+      expect(ItemsService.loadItems).toHaveBeenCalled();
+    });
+
   });
 
-  xit('should modify goods', function() {
-    spyOn(GoodsService, 'change');
+  it('should get modify good', function() {
+    spyOn(GoodsService, 'changeItem');
     createController();
 
     $scope.change();
-    expect(GoodsService.change).toHaveBeenCalled();
+    expect(GoodsService.changeItem).toHaveBeenCalled();
   });
 });
