@@ -58,12 +58,11 @@ describe('Controller: GoodsCtrl', function () {
     };
   });
 
-  xit ('should get category name', function() {
-    var category = '1';
+  it ('should get category name', function() {
+    var category = {category: 'fruit', id: 1};
     createController();
     $scope.getName(category);
-    var name = $scope.categoryName;
-    expect(name).toBe(category);
+    expect($scope.categoryName).toBe(category.category);
   });
 
   it('should add new goods', function() {
