@@ -22,11 +22,13 @@ describe('Controller: ItemsCtrl', function () {
     });
   });
   it('should return all items to items', function () {
-    spyOn(ItemsService, 'loadItems');
+    spyOn(ItemsService, 'loadItems').and.callFake(function(callback){
+      var mockItems = [{'category': 'fruit', 'name': 'apple', 'unit': '斤', 'price': '5.50', id: 1}];
+      callback(mockItems);
+    });
     createController();
-    ItemsService.loadItems(function(data) {
-      var items = data;
-      expect($scope.items).toEqual(items);
+    ItemsService.loadItems(function(data){
+      expect($scope.items).toEqual(data);
       expect(ItemsService.loadItems).toHaveBeenCalled();
     });
   });
