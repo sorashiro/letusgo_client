@@ -66,6 +66,12 @@ describe('Controller: ModifyGoodsCtrl', function () {
     expect($scope.categoryName).toEqual('fruit');
   });
 
+  it('should get category name', function() {
+    $scope.item = {'category':'fruit','name':'leechee','unit':'斤','price':'15.00', id: 1};
+    $scope.categoryName = $scope.item.category;
+    expect($scope.categoryName).toEqual('fruit');
+  });
+
   it('should modify goods information', function() {
     spyOn(GoodsService,'modify');
     createController();
