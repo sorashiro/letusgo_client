@@ -24,12 +24,12 @@ angular.module('letusgoApp').service('CategoryService', function ($http, localSt
       $http.delete('/api/categories/' + category.id);
   };
 
-  this.modify = function (category) {
-    ItemsService.add('modifyCategory', category);
+  this.modify = function(category) {
+    this.storage = category;
   };
 
-  this.getName = function () {
-    return ItemsService.get('modifyCategory');
+  this.getName = function() {
+    return this.storage;
   };
 
   this.modifyCategory = function(category, newName) {
