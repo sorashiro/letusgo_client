@@ -47,7 +47,7 @@ describe('Controller: ModifyGoodsCtrl', function () {
     createController();
     CategoryService.loadCategories = function(data){
       expect($scope.categorys).toEqual(data);
-      expect(CategoryService.loadCategory).toHaveBeenCalled();
+      expect(CategoryService.loadCategories).toHaveBeenCalled();
     };
   });
 
