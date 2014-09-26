@@ -3,7 +3,7 @@
 angular.module('letusgoApp').controller('ItemsCtrl', function ($scope, ItemsService) {
 
   ItemsService.loadItems(function(data) {
-      $scope.items = data
+    $scope.items = data;
   });
 
   $scope.$emit('parentCount');
