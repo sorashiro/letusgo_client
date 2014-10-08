@@ -25,7 +25,7 @@ angular.module('letusgoApp').service('CartItemService', function ($http) {
         }
       });
       callback(cartList);
-    })
+    });
   };
 
   function getShowItems(cartItems, category) {
@@ -56,7 +56,7 @@ angular.module('letusgoApp').service('CartItemService', function ($http) {
       });
 
       callback(total);
-    })
+    });
   };
 
   this.remove = function(callback) {
@@ -65,7 +65,7 @@ angular.module('letusgoApp').service('CartItemService', function ($http) {
 
       $http.post('/api/cartItems/payment', {cartItems: cartItems}).success(function(data) {
         callback(data);
-      })
-    })
+      });
+    });
   };
 });

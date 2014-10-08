@@ -45,7 +45,7 @@ this.addToCart = function (item) {
           if (item.id === existItem.item.id) {
             existItem.num++;
           }
-        })
+        });
       }
       $http.post('/api/cartItems', {cartItems: cartList});
     });

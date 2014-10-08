@@ -17,7 +17,7 @@ angular.module('letusgoApp').service('CategoryService', function ($http) {
 
       categories.push({category: category, id: maxId+1});
       $http.post('/api/categories', {categories: categories});
-    })
+    });
   };
 
   this.removes = function(category) {
@@ -35,6 +35,6 @@ angular.module('letusgoApp').service('CategoryService', function ($http) {
   this.modifyCategory = function(category, newName) {
     category = {category: newName, id: category.id};
     $http.put('/api/categories/' + category.id, {category: category});
-  }
+  };
 
 });
